@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         testdox="true"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests</directory>
+            <exclude>./tests/IntegrationUploadTest.php</exclude>
+            <exclude>./tests/LargeFileUploadTest.php</exclude>
+        </testsuite>
+        <testsuite name="Integration">
+            <file>./tests/IntegrationUploadTest.php</file>
+            <file>./tests/LargeFileUploadTest.php</file>
+        </testsuite>
+    </testsuites>
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </coverage>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="AZURE_STORAGE_ACCOUNT_NAME" value="devstoreaccount1"/>
+        <env name="AZURE_STORAGE_ACCOUNT_KEY" value="Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw=="/>
+        <env name="AZURE_STORAGE_CONTAINER" value="test-container"/>
+        <env name="AZURE_STORAGE_ENDPOINT" value="http://127.0.0.1:10000/devstoreaccount1"/>
+    </php>
+    <groups>
+        <exclude>
+            <group>integration</group>
+            <group>large-files</group>
+        </exclude>
+    </groups>
+</phpunit>

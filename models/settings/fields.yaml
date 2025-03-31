@@ -1,0 +1,70 @@
+fields:
+    azure_settings_section:
+        label: Configuración de Azure Blob Storage
+        type: section
+
+    account_name:
+        label: Nombre de la cuenta
+        comment: Nombre de la cuenta de Azure Storage
+        span: left
+        required: true
+
+    auth_mode:
+        label: Modo de autenticación
+        comment: Selecciona el método de autenticación a utilizar
+        type: dropdown
+        options:
+            key: Clave de cuenta (Account Key)
+            sas: Token de acceso compartido (SAS)
+        default: key
+        span: right
+
+    account_key:
+        label: Clave de acceso
+        comment: Clave de acceso de la cuenta de Azure Storage (requerida si se usa modo Clave de cuenta)
+        span: left
+        type: sensitive
+        trigger:
+            action: show
+            field: auth_mode
+            condition: value[key]
+
+    sas_token:
+        label: Token SAS
+        comment: Token de acceso compartido (SAS) para la cuenta (requerido si se usa modo SAS)
+        span: right
+        type: sensitive
+        trigger:
+            action: show
+            field: auth_mode
+            condition: value[sas]
+
+    container_name:
+        label: Nombre del contenedor
+        comment: Nombre del contenedor de blobs
+        span: left
+        required: true
+
+    endpoint:
+        label: Endpoint personalizado
+        comment: Opcional. Endpoint personalizado (para Azurite o emuladores locales)
+        span: right
+
+    other_settings_section:
+        label: Configuración adicional
+        type: section
+
+    url:
+        label: URL base
+        comment: Opcional. URL base para los archivos (CDN o URL personalizada)
+        span: left
+
+    default_visibility:
+        label: Visibilidad por defecto
+        comment: Visibilidad predeterminada para los archivos subidos
+        type: dropdown
+        options:
+            private: Privado
+            public: Público
+        default: private
+        span: right

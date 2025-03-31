@@ -1,0 +1,60 @@
+{
+    "name": "admsys/azure-blob-storage-octobercms",
+    "description": "Package para subir archivos a Azure Blob Storage compatible con Laravel y October CMS",
+    "type": "october-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tu Nombre",
+            "email": "tu@email.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0|^10.0|^11.0",
+        "microsoft/azure-storage-blob": "^1.5",
+        "composer/installers": "~1.0",
+        "oomphinc/composer-installers-extender": "^2.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0|^8.0|^9.0",
+        "phpunit/phpunit": "^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Admsys\\AzureBlobStorage\\": "src/",
+            "Admsys\\AzureBlobStorageOctobercms\\": "."
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Admsys\\AzureBlobStorage\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Admsys\\AzureBlobStorage\\AzureBlobStorageServiceProvider"
+            ],
+            "aliases": {
+                "AzureBlobStorage": "Admsys\\AzureBlobStorage\\Facades\\AzureBlobStorage"
+            }
+        },
+        "installer-name": "azureblobstorageoctobercms",
+        "october-plugin": {
+            "code": "Admsys.AzureBlobStorageOctobercms",
+            "name": "Azure Blob Storage for October CMS",
+            "description": "Proporciona integración con Azure Blob Storage para October CMS",
+            "author": "Admsys",
+            "icon": "icon-cloud-upload"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "oomphinc/composer-installers-extender": true
+        }
+    }
+}
